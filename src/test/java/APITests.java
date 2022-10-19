@@ -3,6 +3,7 @@ import games.Game;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utils.BaseApiTest;
 import utils.URLS;
 
 import java.util.Arrays;
@@ -45,10 +46,7 @@ public class APITests extends BaseApiTest {
 
     @Test
     public void getOneGameByID() {
-        Response response = given().spec(specBuilder)
-                .when()
-                .get(URLS.VIDEOGAMES + "8");
-        Game game = response.as(Game.class);
+        Game game = helper.getGameById("8");
         Assert.assertEquals(game.getName(), "SimCity 2000");
     }
 

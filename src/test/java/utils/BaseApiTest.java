@@ -1,3 +1,5 @@
+package utils;
+
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.specification.RequestSpecification;
@@ -8,6 +10,7 @@ import org.testng.annotations.BeforeMethod;
 public class BaseApiTest {
     public RequestSpecification specBuilder;
     public ResponseSpecification responseSpecification;
+    public TestHelper helper;
 
     @BeforeMethod
     public void setupRequest(){
@@ -16,5 +19,6 @@ public class BaseApiTest {
                 .setContentType("application/json").build();
         responseSpecification = new ResponseSpecBuilder().expectStatusCode(HttpStatus.SC_OK)
                 .expectContentType("application/json").build();
+        helper = new TestHelper(specBuilder, responseSpecification);
     }
 }
